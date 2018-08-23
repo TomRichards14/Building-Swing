@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     private float PlayerSpeed = 0.1f;
-    private float PlayerJumpMultiplier = 500.0f;
+    private float PlayerJumpMultiplier = 250.0f;
 
     private bool IsPlayerGrounded;
 
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
         if ((Input.GetKeyDown(KeyCode.Space)) && (IsPlayerGrounded == true))
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * PlayerJumpMultiplier);
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 

@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour {
 
         if ((Input.GetKeyDown(KeyCode.Space)) && (IsPlayerGrounded == true))
         {
-            this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * PlayerJumpMultiplier);
+            GetComponent<Rigidbody>().AddForce(Vector3.up * PlayerJumpMultiplier);
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
     }
 
@@ -45,6 +46,11 @@ public class PlayerController : MonoBehaviour {
         if ((OtherCollider.gameObject.tag == "Building") || (OtherCollider.gameObject.tag == "Rope"))
         {
             IsPlayerGrounded = true;
+        }
+
+        if (OtherCollider.gameObject.tag == "Rope")
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
